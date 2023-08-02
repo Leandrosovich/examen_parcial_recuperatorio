@@ -56,7 +56,8 @@ const Reserva = sequelize.define('Reserva', {
         type: DataTypes.DATE,
         allowNule: true
     }
-}, {
+},
+ 
     createdAt: true,
     updatedAt: true,
     deletedAt: true,
