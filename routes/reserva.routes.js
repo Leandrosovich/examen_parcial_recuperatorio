@@ -1,36 +1,45 @@
-// TODO: Importar el modelo y controladores de reservas, luego vincular rutas con controladores
+const { Router } = require("express");
+const router = Router();
 
-const router = require('express').Router();
-
+const {
+  renderListaReservas,
+  renderFormNuevaReserva,
+  renderFormEditarReserva,
+  obtenerReservas, // Obtener todas
+  obtenerReserva, // Obtener un única reserva
+  crearReserva, // Crear una nueva
+  actualizarReserva,
+  eliminarReserva, // eliminacion logica, 1 to 0
+} = require("../controllers/reserva.controllers");
 
 // ==========================================
 //         Rutas para renderizar vistas
 // ==========================================
 
-// Vista para todas las reservas
-router.get('/lista-reservas', )
+// Obtener todas las reservas
+router.get("/listado-reservas", renderListaReservas);
 
 // Formulario para crear una reserva
-router.get('/nueva-reserva', )
-
-// Formulario para editar una reserva
-router.get('/editar-reserva/:id', )
+router.get("/crear-reserva", renderFormNuevaReserva);
 
 // ==========================================
 //         Rutas para CRUD de reservas
 // ==========================================
 
 // Obtener todas las reservas
-router.get('/api/',);
- 
-// Crear una reserva
-router.post('/api/',);
- 
-// Actualizar una reserva
-router.put('/api/:id',);
- 
-// Eliminar una reserva de forma lógica
-router.delete('/api/:id',);
+router.get("/api", obtenerReservas);
 
- 
- module.exports = router;
+// Crear una reserva
+router.post("/api", crearReserva);
+
+router.get("/api/:id", obtenerReserva);
+
+// Actualizar una reserva
+router.put("/api/:id", actualizarReserva);
+
+// Eliminar una reserva de forma lógica
+router.delete("/api/:id", eliminarReserva);
+
+// Formulario para actualizar una reserva
+router.get("/actualizar-reserva/:id", renderFormEditarReserva);
+module.exports = router;

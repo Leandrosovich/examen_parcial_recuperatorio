@@ -1,9 +1,7 @@
 //Modelo de datos de un cine.
-//MODELADO DE DATOS REALIZADO.
-const { DataTypes } = require("sequelize");
+const { DataTypes, sequelize } = require("../database");
 
-const Reserva = sequelize.define('Reserva', {
-    
+const Reserva = sequelize.define("Reserva", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -42,6 +40,7 @@ const Reserva = sequelize.define('Reserva', {
     sala: {
         type: DataTypes.INTEGER,
         allowNule: false,
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNule: false,
@@ -56,16 +55,15 @@ const Reserva = sequelize.define('Reserva', {
         type: DataTypes.DATE,
         allowNule: true
     }
-},
- 
-    createdAt: true,
-    updatedAt: true,
-    deletedAt: true,
-    tableName: 'Reserva'
-});
+},  {
+        createdAt: true,
+        updatedAt: true,
+        deletedAt: true,
+        tableName: 'reservas'
+    });
 
 Reserva.sync({ force: false }).then(() => {
     console.log('Tabla de reserva creada');
 });
 
-module.exports = Cincepolis;
+module.exports = Reserva;
